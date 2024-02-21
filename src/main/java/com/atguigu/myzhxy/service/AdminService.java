@@ -6,5 +6,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface AdminService extends IService<Admin> {//针对Admin实现service层增删改查
     Admin login(LoginForm loginForm);
-    
+
+    Admin getAdminById(Long userId);
 }

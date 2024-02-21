@@ -11,6 +11,8 @@ import com.atguigu.myzhxy.service.TeacherService;
 import com.atguigu.myzhxy.util.CreateVerifiCodeImage;
 import com.atguigu.myzhxy.util.JwtHelper;
 import com.atguigu.myzhxy.util.Result;
+import com.atguigu.myzhxy.util.ResultCodeEnum;
+import org.apache.ibatis.annotations.Case;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -35,6 +38,42 @@ public class SystemController {
     private StudentService studentService;
     @Autowired
     private TeacherService teacherService;
+
+    @GetMapping("/getInfo")//登陆成功首页跳转功能
+    public Result getInfoByToken(@RequestHeader("token") String token){//以token请求头获取
+        //拿到token后先验证有没有过期
+        boolean expiration = JwtHelper.isExpiration(token);
+        if (expiration) {//如果过期
+            return Result.build(null, ResultCodeEnum.TOKEN_ERROR);
+        }
+        //从token中解析出用户ID和用户类型
+        Long userId = JwtHelper.getUserId(token);//解析用户ID
+        Integer userType = JwtHelper.getUserType(token);//解析用户类型
+
+        Map<String,Object> map = new LinkedHashMap<>();//构建键值对形成map集合
+
+        switch (userType){
+            case 1:
+                Admin admin = adminService.getAdminById(userId);//获取到用户
+                map.put("userType",1);
+                map.put("user",admin);
+                break;
+            case 2:
+                Student student = studentService.getStudentById(userId);//获取到用户
+                map.put("userType",2);
+                map.put("user",student);
+                break;
+            case 3:
+                Teacher teacher = teacherService.getTeacherById(userId);//获取到用户
+                map.put("userType",3);
+                map.put("user",teacher);
+                break;
+        }
+
+
+        return Result.ok(map);
+
+    }
 
     //校验登陆是否成功的方法
     @PostMapping("/login")//此为一开始的post校验请求

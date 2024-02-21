@@ -19,7 +19,14 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         queryWrapper.eq("name",loginForm.getUsername());
         queryWrapper.eq("password", MD5.encrypt(loginForm.getPassword()));
         Student student = baseMapper.selectOne(queryWrapper);
+        return student;
+    }
 
+    @Override
+    public Student getStudentById(Long userId) {
+        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id",userId);
+        Student student = baseMapper.selectOne(queryWrapper);
         return student;
     }
 }

@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class Admin {
     @TableId(value = "id",type = IdType.AUTO)//对主键进行标记
     private Integer id;
+    private String name;
     private char gender;
     private String password;
     private String email;
