@@ -8,8 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @TableName("tb_grade")
 public class Grade {
     @TableId(value = "id",type = IdType.AUTO)
@@ -18,5 +16,5 @@ public class Grade {
     private String manager;
     private String email;
     private String telephone;
-    private String introduction;
+    private String introducation;
 }

@@ -16,11 +16,11 @@ import org.springframework.util.StringUtils;
 @Transactional
 public class GradeServiceImpl extends ServiceImpl<GradeMapper, Grade> implements GradeService {
     @Override
-    public IPage<Grade> getGradeByOpr(Page<Grade> pageParam, String gradename) {
+    public IPage<Grade> getGradeByOpr(Page<Grade> pageParam, String gradeName) {
         QueryWrapper queryWrapper = new QueryWrapper();//使用querywrapper来进行查询
         //判断查询是否为空
-        if (!StringUtils.isEmpty(gradename)){
-            queryWrapper.like("name",gradename);
+        if (!StringUtils.isEmpty(gradeName)){
+            queryWrapper.like("name",gradeName);
         }
         //根据ID降序排序
         queryWrapper.orderByDesc("id");

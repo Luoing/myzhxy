@@ -6,5 +6,5 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface GradeService extends IService<Grade> {
-    IPage<Grade> getGradeByOpr(Page<Grade> page, String gradename);
+    IPage<Grade> getGradeByOpr(Page<Grade> page, String gradeName);
 }

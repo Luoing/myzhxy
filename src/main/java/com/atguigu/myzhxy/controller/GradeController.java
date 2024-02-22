@@ -16,11 +16,11 @@ public class GradeController {
 
     @GetMapping("/getGrades/{pageNo}/{pageSize}")
     //本项目中返回的一切Jason对象都用result来获取，需要获得单独某个属性就放入result中
-    public Result getGrades(@PathVariable Integer pageNo, @PathVariable Integer pageSize,@RequestParam("gradeName") String gradename){
+    public Result getGrades(@PathVariable("pageNo") Integer pageNo, @PathVariable("pageSize") Integer pageSize, String gradeName){
         //分页带条件查询
         Page<Grade> page = new Page<>(pageNo,pageSize);
         //通过服务层来查询
-        IPage<Grade> pageRs = gradeService.getGradeByOpr(page,gradename);
+        IPage<Grade> pageRs = gradeService.getGradeByOpr(page,gradeName);
         //封装result对象返回
         return Result.ok(pageRs);
     }
