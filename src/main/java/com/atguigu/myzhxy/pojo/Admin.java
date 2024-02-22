@@ -21,5 +21,5 @@ public class Admin {
     private String email;
     private String telephone;
     private String address;
-    private String portraitPath;
+    private String portraitPath;//
 }
