@@ -22,4 +22,5 @@ public class Admin {//
     private String telephone;
     private String address;
     private String portraitPath;//
+    //第二次git主分支修改
 }
