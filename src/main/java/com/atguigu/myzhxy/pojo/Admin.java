@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+//test-1
 @Data//get、set、tostring方法全部生成
 @AllArgsConstructor//全参构造方法
 @NoArgsConstructor//无参构造方法
