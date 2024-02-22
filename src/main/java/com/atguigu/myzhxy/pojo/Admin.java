@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor//全参构造方法
 @NoArgsConstructor//无参构造方法
 @TableName("tb_admin")//mybatisplus讲实体与数据库形成映射，一一进行绑定
-public class Admin {
+public class Admin {//
     @TableId(value = "id",type = IdType.AUTO)//对主键进行标记
     private Integer id;
     private String name;
@@ -21,5 +21,5 @@ public class Admin {
     private String email;
     private String telephone;
     private String address;
-    private String portraitPath;
+    private String portraitPath;//
 }
