@@ -13,6 +13,13 @@ import org.springframework.web.bind.annotation.*;
 public class GradeController {
     @Autowired
     private GradeService gradeService;
+    @PostMapping("saveOrUpdateGrade")//增加功能
+    public Result saveOrUpdateGrade(@RequestBody Grade grade){//因为请求的返回的是JASON格式，现在转换成grade来接受
+        //接受参数
+        //调用服务层方法增加或者修改
+        gradeService.saveOrUpdate(grade);
+        return Result.ok();
+    }
 
     @GetMapping("/getGrades/{pageNo}/{pageSize}")
     //本项目中返回的一切Jason对象都用result来获取，需要获得单独某个属性就放入result中
