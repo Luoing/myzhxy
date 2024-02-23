@@ -17,7 +17,7 @@ public class Clazz {
     private String name;
     private Integer number;
     private String introducation;
-    private String headMaster;
+    private String headmaster;
 
     private  String email;
     private String telephone;

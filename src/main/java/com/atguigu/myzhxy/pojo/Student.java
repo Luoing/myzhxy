@@ -16,7 +16,7 @@ public class Student {
     private Integer id;
     private String sno;
     private String name;
-    private char gender;
+    private char gender = '男';//默认设置
     private String password;
     private String email;
     private String telephone;
