@@ -1,12 +1,9 @@
 package com.atguigu.myzhxy.config;
 
-import com.google.common.base.Predicates;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.ParameterBuilder;
-import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
@@ -57,7 +54,9 @@ public class Swagger2Config {
                 .apiInfo(webApiInfo())
                 .select()
                 //可以测试请求头中：输入token
-                .apis(RequestHandlerSelectors.withClassAnnotation(ApiOperation.class))
+//                .apis(RequestHandlerSelectors.withClassAnnotation(ApiOperation.class))
+                //扫描包和swagger相关的controller相关的注解
+                .apis(RequestHandlerSelectors.basePackage("com.atguigu.myzhxy.controller"))
                 //过滤掉admin路径下的所有页面
                 //.paths(Predicates.and(PathSelectors.regex("/sms/.*")))
                 //过滤掉所有error或error.*页面
