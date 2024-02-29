@@ -20,6 +20,13 @@ public class GradeController {
     @Autowired
     private GradeService gradeService;
 
+    @ApiOperation("获取全部年级")
+    @GetMapping("/getGrades")
+    public Result getGrades(){
+        List<Grade> grades = gradeService.getGrades();
+        return Result.ok(grades);
+    }
+
     @ApiOperation("删除Grade信息")//面对swagger中相关的注解
     @DeleteMapping("/deleteGrade")//年级删除功能映射及功能添加
     public Result deleteGrade(@ApiParam("要删除的所有的grade的ID的Jason集合") @RequestBody List<Integer> ids){//apiparam是swagger接受的参数信息
