@@ -12,9 +12,7 @@ import com.atguigu.myzhxy.util.CreateVerifiCodeImage;
 import com.atguigu.myzhxy.util.JwtHelper;
 import com.atguigu.myzhxy.util.Result;
 import com.atguigu.myzhxy.util.ResultCodeEnum;
-import org.apache.ibatis.annotations.Case;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
@@ -22,10 +20,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -33,7 +29,7 @@ import java.util.Map;
 @RequestMapping("/sms/system")//请求的运输路径，sms为本地controller层上
 public class SystemController {
     @Autowired//是Spring框架中的一个注解，它用于自动装配bean的依赖关系。这个注解可以应用于类成员变量、方法及构造函数上，以告诉Spring框架自动完成这些依赖关系的注入。
-    private AdminService adminService;
+    private AdminService  adminService;
     @Autowired
     private StudentService studentService;
     @Autowired

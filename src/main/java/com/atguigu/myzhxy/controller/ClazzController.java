@@ -5,20 +5,26 @@ import com.atguigu.myzhxy.service.ClazzService;
 import com.atguigu.myzhxy.util.Result;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@Api("班级管理器")
 @RestController//因为是异步交互，返回数据类型的方法，防止@ResponseBody的重复使用
 @RequestMapping("/sms/clazzController")//请求的运输路径，sms为本地controller层上
 public class ClazzController {
 
     @Autowired
     private ClazzService clazzService;
+
+    @ApiOperation("增加或者修改班级信息")
+    @PostMapping("/saveOrUpdateClazz")
+    public Result saveOrUpdateClazz(@ApiParam("json格式的班级信息")@RequestBody Clazz clazz){
+        clazzService.saveOrUpdate(clazz);
+        return Result.ok();
+    }
 
     @ApiOperation("分页带条件班级模糊查询")
     @GetMapping("/getClazzsByOpr/{pageNo}/{pageSize}")
