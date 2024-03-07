@@ -22,6 +22,16 @@ public class ClazzController {
     @Autowired
     private ClazzService clazzService;
 
+    //GET /sms/clazzController/getClazzs
+    @ApiOperation("查询所有班级下拉信息")
+    @GetMapping("/getClazzs")
+    public Result getClazzs(){
+        List<Clazz> clazzes = clazzService.getClazzs();
+        return Result.ok(clazzes);
+    }
+
+
+
     //sms/clazzController/deleteClazz
     @ApiOperation("删除班级管理")
     @DeleteMapping("/deleteClazz")
@@ -41,7 +51,9 @@ public class ClazzController {
 
     @ApiOperation("分页带条件班级模糊查询")
     @GetMapping("/getClazzsByOpr/{pageNo}/{pageSize}")
-    public Result getClazzByOpr(@ApiParam("分页查询页面") @PathVariable("pageNo") Integer pageNo, @ApiParam("分页查询每页的条数")@PathVariable("pageSize") Integer pageSize, @ApiParam("分页查询的条件")Clazz clazz){
+    public Result getClazzByOpr(@ApiParam("分页查询页面") @PathVariable("pageNo") Integer pageNo,
+                                @ApiParam("分页查询每页的条数")@PathVariable("pageSize") Integer pageSize,
+                                @ApiParam("分页查询的条件")Clazz clazz){
         Page<Clazz> page = new Page<>(pageNo,pageSize);
         IPage<Clazz> pageRs = clazzService.getClazzsByOpr(page,clazz);
         return Result.ok(pageRs);
